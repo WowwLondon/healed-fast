@@ -163,7 +163,7 @@ var WEEK1 = [
   {l:"Coconut chickpea stew with avocado", d:"Romaine salad bowl with alkaline hummus and avocado"},
   {l:"Green banana salad: kabocha, hemp cream, raw chayote, fennel, basil", d:"Quinoa stir-fry: butternut, chickpea fritters, avocado"},
   {l:"Spelt/rye flatbread, watercress, rocket, cucumber, olives, hummus, avocado", d:"Nettle soup: chayote, pumpkin, green banana"},
-  {l:"Spelt or kamut pasta with chickpea stew, portobello, callaloo", d:"Salad with guacamole"},
+  {l:"Homemade spelt pasta with chickpea stew, portobello, callaloo", d:"Salad with guacamole"},
   {l:"Wild rice, sautéed callaloo, bell peppers, grated chayote", d:"Butternut squash with a salad bowl"}
 ];
 
@@ -323,18 +323,32 @@ function vFood(){
   return h;
 }
 
+var STORES = {
+  OC:{n:"Ocado / Sainsbury's", w:"Online delivery — staples, fruit, salad, spelt flour"},
+  HS:{n:"Healthy Supplies", w:"healthysupplies.co.uk — fonio 1kg £8.80, wild rice, chickpeas"},
+  BX:{n:"Brixton Market / Ivory Island", w:"Callaloo, chayote, bananas, soursop, small limes. Ivory Island delivers in London, free over £60"},
+  HB:{n:"Herb shop", w:"Your original shop — Endocrine + herbs; ask for certificate of analysis"},
+  RF:{n:"Realfoods", w:"realfoods.co.uk — Genni wild-crafted sea moss 50g £8.55"},
+  ES:{n:"Eden Springs", w:"19L spring water bottles, free delivery"},
+  JL:{n:"John Lewis Business", w:"03456 037 979 · business@johnlewis.co.uk — ask for trade price"},
+  CS:{n:"Chefstuff", w:"01568 601 100 — Imperia Pasta Presto ~£270 (£224.66 ex VAT)"},
+  EB:{n:"eBay UK", w:"Imperia Ravioli Maker 400 — ~£61 delivered (check model 400, new)"}
+};
 var SHOP = {
-  "Week 1 + Endocrine (order now)":["Endocrine powder (eattolivenottodie, £40) — ask for certificate of analysis","Fonio 2 × 350g","Quinoa 1kg","Wild rice 500g","Dried chickpeas 1kg","Chickpea flour 500g","Spelt or kamut pasta 500g","Tahini, walnuts, Medjool dates, agave","Grapeseed oil; coconut milk ×2","Sea salt, thyme, sage, bay, allspice, clove, onion powder, achiote, cayenne","Key limes ×30","Fresh callaloo 2 bunches (not tinned)","Chayote ×3, green bananas ×4, baby/burro bananas ×6","Pumpkin/butternut ×2, bell peppers ×10, cherry tomatoes 1kg","Red onion ×3, spring onions 3 bunches","Watercress, rocket, romaine, cucumber ×3","Avocado ×7, olives 1 jar","Oyster / king oyster / portobello 600g","Seeded grapes, berries, plums, mango ×2","Spring water ~20L","Coconut water 3L"],
-  "Week 2 (order day 5)":["Key limes ×30","Coconut water 7L","Avocado ×7, cucumber ×5","Cherry tomatoes 1kg, bell peppers ×6","Kale or dandelion 4 bunches, rocket ×2","Watermelon, papaya ×2, mango ×3","Berries 4 punnets, seeded grapes, apples ×4","Chayote ×2, dill","Dried sea moss (Purple 80g or Gold 70g, £25)","Spring water ~20L"],
-  "Fast week (order day 12)":["Key limes ×40","Coconut water 7–10L","Soursop ×2–3","Papaya ×3","Watercress 4 bunches","Cucumber ×4","Pears ×10","Blueberries + blackberries 6 punnets","Dandelion greens 2 bunches","Spring water ~20L"],
-  "Exit (days 22–25)":["Seeded fruit: grapes, berries, melon, mango, pears, apples","Soup veg: squash, chayote, peppers, spring onion","Leafy greens"]
+  "Kit (one-off)":[["Panasonic SD-YR2540 bread maker (spelt + pasta dough programmes) ~£239","JL"],["Imperia Pasta Presto electric roller","CS"],["Imperia Ravioli Maker 400 (3×3cm)","EB"]],
+  "Week 1 + Endocrine (order now)":[["Endocrine powder (£40)","HB"],["Fonio 1kg","HS"],["Wild rice 500g","HS"],["Dried chickpeas 1kg","HS"],["Chickpea flour 500g","HS"],["Spelt flour 2kg (Doves Farm / Sharpham Park)","OC"],["Sparkling spring water 1.5L ×4 (bread)","OC"],["Quinoa 1kg","OC"],["Tahini, walnuts, Medjool dates, agave","OC"],["Grapeseed oil; coconut milk ×2","OC"],["Sea salt, thyme, sage, bay, allspice, clove, onion powder, achiote, cayenne","OC"],["Limes ×30 (small West Indian if you can)","BX"],["Fresh callaloo 2 bunches (not tinned)","BX"],["Chayote ×3, green bananas ×4, baby/burro bananas ×6","BX"],["Pumpkin/butternut ×2, bell peppers ×10, cherry tomatoes 1kg","OC"],["Red onion ×3, spring onions 3 bunches","OC"],["Watercress, rocket, romaine, cucumber ×3","OC"],["Avocado ×7, olives 1 jar","OC"],["Oyster / king oyster / portobello 600g","OC"],["Seeded grapes, berries, plums, mango ×2","OC"],["Spring water ~20L","ES"],["Coconut water 3L","OC"]],
+  "Week 2 (order day 5)":[["Limes ×30","BX"],["Coconut water 7L","OC"],["Avocado ×7, cucumber ×5","OC"],["Cherry tomatoes 1kg, bell peppers ×6","OC"],["Kale or dandelion 4 bunches, rocket ×2","OC"],["Watermelon, papaya ×2, mango ×3","OC"],["Berries 4 punnets, seeded grapes, apples ×4","OC"],["Chayote ×2, dill","BX"],["Dried sea moss 50–80g","RF"],["Spring water ~20L","ES"]],
+  "Fast week (order day 12)":[["Limes ×40","BX"],["Coconut water 7–10L","OC"],["Soursop ×2–3 (go early, sells out)","BX"],["Papaya ×3","OC"],["Watercress 4 bunches","OC"],["Cucumber ×4","OC"],["Pears ×10","OC"],["Blueberries + blackberries 6 punnets","OC"],["Dandelion greens 2 bunches","BX"],["Spring water ~20L","ES"]],
+  "Exit (days 22–25)":[["Seeded fruit: grapes, berries, melon, mango, pears, apples","OC"],["Soup veg: squash, chayote, peppers, spring onion","OC"],["Leafy greens","OC"]]
 };
 function vShop(){
-  var h='<h2>Shopping</h2><p class="muted">One person. Fresh produce from a Caribbean or Latin grocer (Brixton Market); grains from a wholefood site.</p>';
+  var h='<h2>Shopping</h2><p class="muted">One person. Each item is tagged with where to buy it.</p><div class="card small"><ul>';
+  Object.keys(STORES).forEach(function(k){ h+='<li><span class="pill sea">'+k+'</span> <strong>'+esc(STORES[k].n)+'</strong> — '+esc(STORES[k].w)+'</li>'; });
+  h+='</ul></div>';
   Object.keys(SHOP).forEach(function(sec,si){
     var items=SHOP[sec], done=items.filter(function(x,i){return state.shop[si+":"+i];}).length;
     h+='<h3>'+esc(sec)+' <span class="pill sea">'+done+'/'+items.length+'</span></h3><div class="card"><ul class="check">';
-    items.forEach(function(x,i){ var k=si+":"+i, on=!!state.shop[k]; h+='<li class="'+(on?"done":"")+'"><input type="checkbox" id="s-'+k+'" data-shop="'+k+'"'+(on?" checked":"")+'><label class="what" for="s-'+k+'" style="font-weight:400">'+esc(x)+'</label></li>'; });
+    items.forEach(function(x,i){ var k=si+":"+i, on=!!state.shop[k]; h+='<li class="'+(on?"done":"")+'"><input type="checkbox" id="s-'+k+'" data-shop="'+k+'"'+(on?" checked":"")+'><label class="what" for="s-'+k+'" style="font-weight:400">'+esc(x[0])+' <span class="pill">'+x[1]+'</span></label></li>'; });
     h+='</ul></div>';
   });
   return h;
