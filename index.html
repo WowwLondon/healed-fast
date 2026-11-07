@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Healed Fast 21-Day Guide</title>
+<meta name="theme-color" content="#16302A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Healed Fast">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one-column app. Sticky stage header, tab bar, today-first timeline; reference tabs below. */
+:root{
+  --paper:#F3F5EF; --card:#FFFFFF; --ink:#16302A; --muted:#5B6B64; --line:#DCE3DA;
+  --accent:#4E7F2A; --accent-soft:#E6EFD9; --sea:#1F5E5A;
+  --warn:#9A5B00; --warn-soft:#FBEFD9; --crit:#A3312A; --crit-soft:#F8E1DE; --good:#2F7A45;
+  --display:"Fraunces", Georgia, "Times New Roman", serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1715; --card:#16211E; --ink:#E6EEE8; --muted:#9DB0A8; --line:#26352F;
+    --accent:#9CC56A; --accent-soft:#22331C; --sea:#6FB7B0;
+    --warn:#E8B04C; --warn-soft:#33270F; --crit:#F08A80; --crit-soft:#3A1E1B; --good:#7CCB91;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1715; --card:#16211E; --ink:#E6EEE8; --muted:#9DB0A8; --line:#26352F;
+  --accent:#9CC56A; --accent-soft:#22331C; --sea:#6FB7B0;
+  --warn:#E8B04C; --warn-soft:#33270F; --crit:#F08A80; --crit-soft:#3A1E1B; --good:#7CCB91;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+header.top{position:sticky;top:0;padding-top:max(14px,env(safe-area-inset-top));z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:14px 0 0}
+.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:650;font-size:1.55rem;margin:0;letter-spacing:-.01em}
+h2{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:28px 0 10px;text-wrap:balance}
+h3{font-size:1rem;margin:18px 0 6px}
+.muted{color:var(--muted)}
+.small{font-size:.86rem}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;margin-top:10px;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{flex:0 0 auto;padding:9px 12px;border-radius:10px 10px 0 0;color:var(--muted);text-decoration:none;font-weight:600;font-size:.92rem;border:1px solid transparent;border-bottom:none}
+nav.tabs a[aria-current="page"]{color:var(--ink);background:var(--card);border-color:var(--line)}
+nav.tabs a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.grid{display:grid;gap:12px}
+@media(min-width:640px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+.stage{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.daynum{font-family:var(--display);font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8rem;font-weight:600;background:var(--accent-soft);color:var(--accent)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.crit{background:var(--crit-soft);color:var(--crit)}
+.pill.sea{background:transparent;border:1px solid var(--sea);color:var(--sea)}
+.bar{display:flex;gap:3px;margin-top:12px}
+.bar span{flex:1;height:8px;border-radius:2px;background:var(--line)}
+.bar span.s1{background:#C9DDB0}.bar span.s2{background:#8DBB5E}.bar span.s3{background:#E3B35A}.bar span.s4{background:#C77A3A}.bar span.s5{background:#8FB7B3}
+:root[data-theme="dark"] .bar span.s1{background:#3D5A2A}
+.bar span.today{outline:2px solid var(--ink);outline-offset:1px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;font-size:.8rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+ul.check{list-style:none;margin:0;padding:0}
+ul.check li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+ul.check li:first-child{border-top:none}
+ul.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:0 0 auto}
+ul.check .t{font-variant-numeric:tabular-nums;font-weight:600;min-width:64px;color:var(--sea);font-size:.88rem;padding-top:2px}
+ul.check li.done .what{color:var(--muted);text-decoration:line-through}
+.flag{border-left:4px solid var(--warn);background:var(--warn-soft);padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0}
+.flag.crit{border-color:var(--crit);background:var(--crit-soft)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+.tw{overflow-x:auto}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+button{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:9px;padding:8px 14px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+input[type=date],input[type=number],input[type=text],textarea,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+textarea{width:100%;min-height:70px}
+label{font-weight:600;font-size:.9rem}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.status{font-size:.8rem;color:var(--muted)}
+details{border-top:1px solid var(--line);padding:10px 0}
+details summary{cursor:pointer;font-weight:600}
+.cols3{columns:2 220px;column-gap:24px}
+.cols3 li{break-inside:avoid}
+.ev{display:grid;gap:10px}
+@media(min-width:640px){.ev{grid-template-columns:repeat(3,1fr)}}
+.ev .card h3{margin-top:0}
+.ev .for{border-top:4px solid var(--good)}.ev .against{border-top:4px solid var(--crit)}.ev .unk{border-top:4px solid var(--muted)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap" style="padding-bottom:0">
+  <div class="brand">
+    <h1>Healed Fast · 21 days</h1>
+    <span class="status" id="saveStatus"></span>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Sections">
+    <a href="#today">Today</a><a href="#plan">Plan</a><a href="#herbs">Herbs</a><a href="#food">Food</a><a href="#shop">Shopping</a><a href="#log">Log &amp; tests</a><a href="#know">Knowledge</a>
+  </nav>
+</div></header>
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+(function(){
+"use strict";
+// Capture the page source before rendering, so a save rewrites the document from source, not from the live DOM.
+var state;
+state = {start:"",checks:{},shop:{},log:{},tests:{},custom:[]};
+["checks","shop","log","tests"].forEach(function(k){ if(!state[k]) state[k]={}; });
+
+var LS = "healedfast-state";
+// Fallback: if the save capability is absent, keep progress in this browser.
+try{ var ls = JSON.parse(localStorage.getItem(LS)||"null"); if(ls) state = ls; }catch(e){}
+if(!state.custom) state.custom=[];
+
+function setStatus(t){ var s=document.getElementById("saveStatus"); if(s) s.textContent=t; }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function stateJSON(){ return JSON.stringify(state).replace(/</g,"\\u003c"); }
+function save(){
+  try{ localStorage.setItem(LS, JSON.stringify(state)); setStatus("Saved on this phone"); }
+  catch(e){ setStatus("Not saved: storage blocked"); }
+}
+
+// ---------- Content ----------
+var STAGES = [
+  {id:0, name:"Before day 1", from:-99, to:0, cls:"", tag:"Prep"},
+  {id:1, name:"Alkaline eating", from:1, to:7, cls:"s1", tag:"Stage 1"},
+  {id:2, name:"Shop herbs + raw food", from:8, to:14, cls:"s2", tag:"Stage 2"},
+  {id:3, name:"Juice fast", from:15, to:17, cls:"s3", tag:"Stage 3a"},
+  {id:4, name:"Water fast", from:18, to:21, cls:"s4", tag:"Stage 3b"},
+  {id:5, name:"Break the fast", from:22, to:25, cls:"s5", tag:"Exit"}
+];
+function stageOf(d){ for(var i=STAGES.length-1;i>=0;i--){ if(d>=STAGES[i].from && d<=STAGES[i].to) return STAGES[i]; } return d>25?{id:6,name:"Maintenance",tag:"After",cls:""}:STAGES[0]; }
+
+var MORNING = {k:"am-water", t:"On rising", w:"600ml warm spring water + 2–3 key limes. Bathroom first."};
+var IRON_AM = {k:"iron-am", t:"Morning", w:"Iron Fluorine 1 cup (1 tbsp in 2 cups, simmer 10 min, strain)"};
+var IRON_PM = {k:"iron-pm", t:"Evening", w:"Iron Fluorine 1 cup"};
+var ENDO = {k:"endo", t:"Morning", w:"Endocrine 1 cup (1 tsp whisked into 2 cups spring water)"};
+var POT = {k:"pot", t:"All day", w:"Shop herb pot: 1 tbsp each Horsetail, Anamu, Cancansa, Damiana + 2 pieces All Man Strength in 1.5L spring water, low heat 15 min. Sip through the day; re-boil 3 times."};
+var COLON_AM = {k:"colon-am", t:"Morning", w:"Colon tea 1 cup (2 tbsp in 3 cups, covered simmer 15 min, cool, strain)"};
+var COLON_PM = {k:"colon-pm", t:"Bed", w:"Colon tea 1 cup"};
+var WALK = {k:"walk", t:"Any time", w:"Walk 20+ min"};
+var REST = {k:"rest", t:"2–3pm", w:"Rest, meditate, clear your mind (15–30 min)"};
+var WATER = {k:"water", t:"All day", w:"Water 2.5–3L total, between meals only (wait 15 min after food)"};
+var CLOSE = {k:"close", t:"8pm", w:"Kitchen closed — nothing to eat after 8pm"};
+
+var WEEK1 = [
+  {l:"Quinoa & bell pepper stew with mushroom burgers", d:"Sautéed callaloo + spring onion, banana fritters, watercress, olives, avocado"},
+  {l:"Big salad: cherry tomato, soaked walnuts, baby banana, tahini", d:"Fonio stir-fry: mushrooms, olives, callaloo, bell pepper, avocado, cherry tomato + 500ml coconut water"},
+  {l:"Coconut chickpea stew with avocado", d:"Romaine salad bowl with alkaline hummus and avocado"},
+  {l:"Green banana salad: kabocha, hemp cream, raw chayote, fennel, basil", d:"Quinoa stir-fry: butternut, chickpea fritters, avocado"},
+  {l:"Spelt/rye flatbread, watercress, rocket, cucumber, olives, hummus, avocado", d:"Nettle soup: chayote, pumpkin, green banana"},
+  {l:"Spelt or kamut pasta with chickpea stew, portobello, callaloo", d:"Salad with guacamole"},
+  {l:"Wild rice, sautéed callaloo, bell peppers, grated chayote", d:"Butternut squash with a salad bowl"}
+];
+
+function itemsFor(d){
+  var s = stageOf(d).id, L=[];
+  if(s===0){
+    return [
+      {k:"bloods", t:"This week", w:"Book baseline bloods (before any herbs or sea moss) — see Log & tests"},
+      {k:"baseline", t:"Same day", w:"Log weight, waist, blood pressure, energy 1–10 (Log tab)"},
+      {k:"order1", t:"Now", w:"Place the week 1 order + Endocrine (Shopping tab)"},
+      {k:"prep0", t:"Day 0", w:"Soak + cook chickpeas, fonio/quinoa base, pumpkin & chickpea stew, sea moss gel"}
+    ];
+  }
+  if(s===1){
+    var m = WEEK1[(d-1)%7];
+    L=[MORNING,{k:"bf",t:"6–11am",w:"Breakfast: fruit (seeded grapes, berries, plums) or hemp seeds"},{k:"lunch",t:"12–2pm",w:"Lunch: "+m.l},REST,{k:"dinner",t:"4–7pm",w:"Dinner: "+m.d},WALK,WATER,CLOSE];
+    if(d===3) L.push({k:"prep",t:"Evening",w:"Batch cook: quinoa jollof (half), winter warmer soup, hummus, more chickpeas"});
+    if(d===5) L.push({k:"order2",t:"Today",w:"Order week 2: raw produce + 7L coconut water"});
+    if(d===7) L.push({k:"prep2",t:"Evening",w:"Wash/chop greens with key lime, hemp-dill topping, salad cream, sea moss gel. Brew first herb pot for tomorrow."});
+    return L;
+  }
+  if(s===2){
+    L=[MORNING,IRON_AM,ENDO,POT,{k:"fruit",t:"11am–12pm",w:"Large fruit bowl or smoothie (berries & grapes / watermelon only / papaya / apple & cucumber)"},{k:"coco",t:"1–2pm",w:"1L fresh coconut water + 500ml water"},{k:"salad",t:"3–6pm",w:"Large salad bowl: leafy greens, avocado, pepper, cherry tomato, cucumber, olives, chayote + hemp topping"},REST,WALK,{k:"eve-water",t:"7–8pm",w:"1L water"},IRON_PM,CLOSE];
+    if(d===10) L.push({k:"prep3",t:"Evening",w:"Prep greens + salad cream for days 11–14"});
+    if(d===12) L.push({k:"order3",t:"Today",w:"Order fast week: soursop, papaya, watercress, cucumber, pears, berries, 7–10L coconut water"});
+    if(d===14) L.push({k:"colon-brew",t:"Evening",w:"Brew the colon tea batch for tomorrow"});
+    return L;
+  }
+  if(s===3){
+    return [MORNING,IRON_AM,ENDO,COLON_AM,POT,{k:"j1",t:"12–2pm",w:"Juice: soursop & key lime / papaya / watercress-cucumber-pear / berries & coconut water"},{k:"coco",t:"3–4pm",w:"1L coconut water + 500ml water"},{k:"j2",t:"5–7pm",w:"Juice: dark berry / sea moss gel + 5 key limes / greens, key lime & pear"},IRON_PM,{k:"salt",t:"All day",w:"Pinch of sea salt in water (electrolytes)"},{k:"walk",t:"Any time",w:"Gentle walk + mobility only"},COLON_PM];
+  }
+  if(s===4){
+    return [MORNING,IRON_AM,ENDO,COLON_AM,POT,{k:"coco",t:"12–3pm",w:"1L fresh coconut jelly water + 500ml water"},{k:"eve",t:"4–7pm",w:"600ml warm water + 2–3 key limes"},IRON_PM,{k:"salt",t:"All day",w:"Pinch of sea salt in water (electrolytes)"},{k:"walk",t:"Any time",w:"Gentle walk + mobility only"},COLON_PM].concat(d===21?[{k:"retest",t:"Today",w:"Retest bloods: liver, kidney, electrolytes, phosphate, PSA"}]:[]);
+  }
+  if(s===5){
+    var soft = d<=24;
+    return [MORNING,IRON_AM,{k:"refeed",t:"Through the day",w: soft ? "Fresh fruit juices + herbal teas only (slow exit)" : "Warm soups (no grains) + leafy salads"},{k:"seamoss",t:"Any time",w:"Sea moss every other day"},IRON_PM,WALK,CLOSE];
+  }
+  return [MORNING,IRON_AM,{k:"meals",t:"Daily",w:"Alkaline meals; one large raw meal a day"},IRON_PM,WALK,CLOSE];
+}
+
+// ---------- Dates ----------
+function parseDate(s){ var p=(s||"").split("-"); return p.length===3? new Date(+p[0],+p[1]-1,+p[2]) : null; }
+function todayDate(){ var n=new Date(); return new Date(n.getFullYear(),n.getMonth(),n.getDate()); }
+function dayNum(){ var s=parseDate(state.start); if(!s) return null; return Math.round((todayDate()-s)/86400000)+1; }
+function fmt(d){ return d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"}); }
+function addDays(s,n){ var d=parseDate(s); d.setDate(d.getDate()+n); return d; }
+
+// ---------- Views ----------
+var viewDay = null;
+function vToday(){
+  var d = dayNum(), h="";
+  if(d===null){
+    h += '<h2>Set your day 1</h2><div class="card"><p>Pick the date you start alkaline eating. Everything else counts from it.</p><div class="row"><label for="startIn">Day 1</label><input type="date" id="startIn"><button class="primary" id="startBtn">Start the plan</button></div><p class="small muted">Before day 1: baseline bloods, the week 1 order, and a batch cook.</p></div>';
+    h += checklist(0);
+    return h;
+  }
+  if(viewDay===null) viewDay = Math.max(0, Math.min(d, 26));
+  var st = stageOf(viewDay);
+  h += '<div class="card" style="margin-top:16px"><div class="stage"><div class="daynum">'+(viewDay<1?"–":"Day "+viewDay)+'</div><div><span class="pill'+(st.id===4?' warn':st.id===3?' warn':'')+'">'+esc(st.tag)+'</span> <strong>'+esc(st.name)+'</strong><div class="small muted">'+(viewDay>=1?fmt(addDays(state.start,viewDay-1)):"Before "+fmt(parseDate(state.start)))+(viewDay===d?" · today":"")+'</div></div></div>';
+  h += '<div class="bar" aria-label="25-day progress">';
+  for(var i=1;i<=25;i++){ h+='<span class="'+stageOf(i).cls+(i===viewDay?' today':'')+'" title="Day '+i+'"></span>'; }
+  h += '</div><div class="legend"><span><i style="background:#C9DDB0"></i>Alkaline</span><span><i style="background:#8DBB5E"></i>Herbs + raw</span><span><i style="background:#E3B35A"></i>Juice</span><span><i style="background:#C77A3A"></i>Water</span><span><i style="background:#8FB7B3"></i>Exit</span></div>';
+  h += '<div class="row" style="margin-top:12px"><button id="prevDay" aria-label="Previous day">‹ Prev</button><button id="todayBtn">Today</button><button id="nextDay" aria-label="Next day">Next ›</button></div></div>';
+  if(st.id===3||st.id===4) h += '<div class="flag crit"><strong>Stop and get help</strong> if you faint, have palpitations, severe weakness, confusion, vomiting, yellow eyes/skin or blood in urine.</div>';
+  if(st.id===5) h += '<div class="flag"><strong>Slow exit.</strong> Refeeding after a water fast can crash phosphate, potassium and magnesium. No big meals before day 25.</div>';
+  if(st.id===2 && viewDay===8) h += '<div class="flag">Herbs start today. Baseline bloods should already be done.</div>';
+  h += checklist(viewDay);
+  h += '<div class="card" style="margin-top:12px"><strong>Alerts</strong><p class="small muted" style="margin:4px 0 10px">Adds 25 days of reminders (morning drinks, herbs, 8pm close, orders, fast switch, retest) to your phone calendar, with alarms.</p><button class="primary" id="icsBtn">Add reminders to calendar</button></div>';
+  return h;
+}
+function pad(n){ return (n<10?"0":"")+n; }
+function icsDate(d,hh,mm){ return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"T"+pad(hh)+pad(mm)+"00"; }
+function makeICS(){
+  if(!state.start) return;
+  var ev=[], add=function(day,hh,mm,title,desc){ var d=addDays(state.start,day-1); ev.push("BEGIN:VEVENT\r\nUID:hf-"+day+"-"+hh+mm+"-"+ev.length+"@healedfast\r\nDTSTAMP:"+icsDate(new Date(),0,0)+"\r\nDTSTART;TZID=Europe/London:"+icsDate(d,hh,mm)+"\r\nDURATION:PT15M\r\nSUMMARY:"+title+"\r\nDESCRIPTION:"+(desc||"")+"\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:"+title+"\r\nTRIGGER:-PT0M\r\nEND:VALARM\r\nEND:VEVENT"); };
+  add(0,9,0,"Healed Fast: book baseline bloods + place week 1 order","Before any herbs or sea moss");
+  for(var d=1; d<=25; d++){
+    add(d,7,0,"Warm water + key limes (600ml)","Day "+d);
+    if(d>=8){ add(d,7,30,"Iron Fluorine + Endocrine"+(d>=15&&d<=21?" + colon tea":""),"Day "+d); add(d,21,0,"Iron Fluorine"+(d>=15&&d<=21?" + colon tea":""),"Day "+d); }
+    if(d<=14||d>=25) add(d,19,45,"Kitchen closes at 8pm","Day "+d);
+  }
+  add(5,10,0,"Order week 2 (raw produce + 7L coconut water)","");
+  add(7,18,0,"Prep: greens, salad cream, sea moss gel, first herb pot","Herbs start tomorrow");
+  add(8,8,0,"Herbs start today","Iron Fluorine AM+PM, Endocrine 1 cup, herb pot");
+  add(12,10,0,"Order fast week (juice produce + coconut water)","");
+  add(14,18,0,"Brew colon tea batch","Fast starts tomorrow");
+  add(15,8,0,"Juice fast starts (days 15-17)","Pinch of sea salt in water");
+  add(18,8,0,"Water fast starts (days 18-21)","Stop and get help if faint, palpitations, confusion");
+  add(21,9,0,"Retest bloods today","Liver, kidney, electrolytes, phosphate");
+  add(22,8,0,"Break the fast: juices + herbal teas only","Slow exit to day 25");
+  var ics="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Healed Fast//EN\r\nCALSCALE:GREGORIAN\r\n"+ev.join("\r\n")+"\r\nEND:VCALENDAR\r\n";
+  var blob=new Blob([ics],{type:"text/calendar"}), a=document.createElement("a");
+  a.href=URL.createObjectURL(blob); a.download="healed-fast-reminders.ics"; document.body.appendChild(a); a.click(); a.remove();
+}
+function checklist(d){
+  var items = itemsFor(d), h='<h2>'+(d<1?"Before day 1":"Checklist")+'</h2><div class="card"><ul class="check">';
+  items.forEach(function(it){
+    var key="d"+d+":"+it.k, on=!!state.checks[key];
+    h+='<li class="'+(on?"done":"")+'"><input type="checkbox" id="c-'+esc(key)+'" data-check="'+esc(key)+'"'+(on?" checked":"")+'><span class="t">'+esc(it.t)+'</span><label class="what" for="c-'+esc(key)+'" style="font-weight:400">'+esc(it.w)+'</label></li>';
+  });
+  var done = items.filter(function(it){return state.checks["d"+d+":"+it.k];}).length;
+  h+='</ul><p class="small muted" style="margin:10px 0 0">'+done+' of '+items.length+' done</p></div>';
+  return h;
+}
+
+function vPlan(){
+  var s = state.start, row=function(a,b,c,dd){return '<tr><td style="white-space:nowrap">'+a+'</td><td><strong>'+b+'</strong></td><td>'+c+'</td><td>'+dd+'</td></tr>';};
+  var dr=function(a,b){ return s? fmt(addDays(s,a-1))+" – "+fmt(addDays(s,b-1)) : "Days "+a+"–"+b; };
+  return '<h2>The order: eat, then herbs, then fast</h2><p class="muted">1-week alkaline lead-in. Juice before water. All shop herbs from day 8. Colon tea only during the fast (label: 2 weeks alkaline first, 14 days max).</p><div class="card tw"><table><thead><tr><th>When</th><th>Stage</th><th>Food</th><th>Herbs</th></tr></thead><tbody>'+
+  row("Before day 1","Prep","Normal","None — bloods first")+
+  row(dr(1,7),"1 · Alkaline eating","Universal Meal Plan, 6am–7pm","None. Warm water + key lime")+
+  row(dr(8,14),"2 · Herbs + raw","~80% raw, fruit bowls, big salads, coconut water","Iron Fluorine AM+PM, Endocrine 1/day, herb pot")+
+  row(dr(15,17),"3a · Juice fast","Juices + coconut water","Same + colon tea AM + bed")+
+  row(dr(18,21),"3b · Water fast","Water, coconut jelly water, key lime","Same + colon tea AM + bed")+
+  row(dr(22,25),"Exit","Juices + herbal teas (22–24), then soups & salads","Iron Fluorine; sea moss every other day")+
+  '</tbody></table></div>'+
+  '<h2>Daily rules (book p.127)</h2><div class="card"><ul class="cols3"><li>Chew well; no snacking</li><li>Warm water on rising; bathroom first</li><li>No drinks with meals — wait 15 min</li><li>Nothing after 8pm</li><li>Walk 20+ min; rest 15–30 min</li><li>Cook with grapeseed or avocado oil; olive & coconut cold only</li><li>No starch, dairy, meat, wheat, sugar</li><li>No canned or seedless fruit; no microwave</li><li>Glass or stainless pots; boil water in a pot</li><li>Herbs 1 hour before any medication</li></ul></div>'+
+  '<h2>Training</h2><div class="card small">Days 1–7: normal, lighter loads · Days 8–14: moderate + daily walk · Days 15–21: walking and mobility only · Lifting returns after day 25.</div>';
+}
+
+function vHerbs(){
+  var r=function(a,b,c,d,e){return '<tr><td><strong>'+a+'</strong>'+(e?'<br><span class="pill crit">'+e+'</span>':'')+'</td><td>'+b+'</td><td>'+c+'</td><td>'+d+'</td></tr>';};
+  return '<h2>Herb protocol</h2><p class="muted">Doses from each bag\'s label. Shop shortcut: boil them together as one pot (Today tab).</p><div class="card tw"><table><thead><tr><th>Herb</th><th>Make</th><th>Dose</th><th>Days</th></tr></thead><tbody>'+
+  r("Iron Fluorine","1 tbsp in 2 cups, simmer 10 min, strain","1 cup AM + 1 cup PM","8–25+","Contains chaparral")+
+  r("Endocrine","1 tsp whisked into 2 cups","1 cup a day (book says AM + bed)","8–21","High iodine")+
+  r("Colon Cleansing Tea","2 tbsp in 3 cups, covered simmer 15 min, cool, strain","1 cup AM + 1 cup bed","15–21","Cascara + rhubarb laxatives")+
+  r("Horsetail","1 tbsp in 2 cups, boil 5, steep 15","2 cups a day","8–21","")+
+  r("Anamu","1 tbsp in 2 cups, boil 5, steep 15","2 cups a day","8–21","")+
+  r("Damiana","1 tbsp in 2 cups boiled water, steep 15","2 cups a day","8–21","")+
+  r("All Man Strength","1 piece in 1L, boil 20, steep 10; re-boil ×4","2 cups a day","8–21","")+
+  r("Cancansa","Label not readable — 1 tbsp in the pot (shop)","In the pot","8–21","")+
+  '</tbody></table></div>'+
+  '<h2>Don\'t add</h2><div class="card"><ul><li><strong>Shop liquid tonic (£40)</strong> — more chaparral</li><li><strong>Bitter Leaf tonic (£55)</strong> — ingredients undisclosed</li><li><strong>drsebis Testo / All-Inclusive</strong> — yohimbe (heart, blood pressure)</li><li><strong>Green Food Plus</strong> — lily of the valley + chaparral</li><li><strong>Sassafras</strong> (2007 okra recipe)</li></ul></div>';
+}
+
+function vFood(){
+  var rec = [
+    ["Fonio + quinoa (rice swap)","1 cup each, washed; 2½ cups spring water, 1 tsp sea salt, 2 thyme sprigs. Low–medium 12–18 min. Off heat, 2 tbsp coconut oil, fluff, cover 7 min."],
+    ["Fonio stir-fry (2–3)","1 cup fonio, callaloo, yellow pepper, spring onion, ½ habanero, 1 cup chickpeas, sesame oil, fennel seed, coriander seed, achiote, allspice. Sauté veg 3 min, add fonio + water, steam ~17 min, coconut oil to finish."],
+    ["Pumpkin & chickpea stew (5–6)","Blend onion, ½ habanero, 6 peppers. Simmer 5 min in grapeseed oil with sage, bay, coriander, onion powder, aniseed, thyme, allspice, clove, achiote. Add pumpkin, 3 cups chickpeas, 500ml water, 25 min low. Coriander + ½ cup coconut cream, 10 min."],
+    ["Quinoa jollof (halve)","Steam 5 peppers, 300g cherry tomatoes, ginger, ½ habanero, onion 10 min; blend; simmer 25 min with seasonings. Add 500g quinoa + 400ml coconut milk; parchment + lid 20 + 10 min."],
+    ["Squash soup (halve)","Butternut or kabocha, chayote, yellow peppers, thyme, coconut milk; 35 min low. No grains — fits the exit days."],
+    ["Winter warmer soup","Pumpkin, chayote, green bananas, peppers, chickpeas, 1.5L water, thyme 20 min; blend 2 cups back in; coconut milk + burro banana 20 min. Top with fried king oyster + nori."],
+    ["Chickpea omelette","Chickpea flour + seasonings + spring water; fry in grapeseed oil. Roast callaloo 10 min; serve with avocado."],
+    ["Kale/dandelion salad","Greens, rocket, cherry tomato, yellow pepper, olives, red onion, avocado, key lime. Blend ½ cup hemp + 4 tbsp dill + 1 tsp salt as topping."],
+    ["Hemp milk (same day)","½ cup hemp hearts, 600ml spring water, 4 dates, pinch salt + clove, 2 tbsp sea moss gel. Blend 1 min, strain."],
+    ["Spiced moss smoothie","½ cup sea moss gel, 1 pear, 300ml apple juice, 150ml water, 75ml ginger juice, 2 key limes, pinch clove."],
+    ["Mushroom patties (2007)","Portobello, bell pepper, oregano, coriander, dill, spelt flour. Fry in grapeseed oil."],
+    ["Sea moss gel","Rinse, soak in spring water 12–24h, blend with fresh water. Fridge 2–3 weeks."]
+  ];
+  var h='<h2>Week 1 meals</h2><div class="card tw"><table><thead><tr><th>Day</th><th>Lunch 12–2</th><th>Dinner 4–7</th></tr></thead><tbody>';
+  WEEK1.forEach(function(m,i){ h+='<tr><td>'+(i+1)+'</td><td>'+esc(m.l)+'</td><td>'+esc(m.d)+'</td></tr>'; });
+  h+='</tbody></table></div><h2>Core recipes</h2><div class="card">';
+  rec.forEach(function(r){ h+='<details><summary>'+esc(r[0])+'</summary><p>'+esc(r[1])+'</p></details>'; });
+  h+='</div><h2>Swaps</h2><div class="card"><ul class="cols3"><li>Rice → fonio + quinoa</li><li>Egg → chickpea flour</li><li>Cow\'s milk → hemp or walnut milk</li><li>Lemon → key lime</li><li>Garlic → spring onion / wild ramson</li><li>Spinach → callaloo, dandelion, nettle</li><li>Carrot → butternut / kabocha</li><li>Sugar → date sugar / agave</li><li>Wheat → spelt / kamut</li><li>Coffee → roasted dandelion root</li></ul></div>';
+  return h;
+}
+
+var SHOP = {
+  "Week 1 + Endocrine (order now)":["Endocrine powder (eattolivenottodie, £40) — ask for certificate of analysis","Fonio 2 × 350g","Quinoa 1kg","Wild rice 500g","Dried chickpeas 1kg","Chickpea flour 500g","Spelt or kamut pasta 500g","Tahini, walnuts, Medjool dates, agave","Grapeseed oil; coconut milk ×2","Sea salt, thyme, sage, bay, allspice, clove, onion powder, achiote, cayenne","Key limes ×30","Fresh callaloo 2 bunches (not tinned)","Chayote ×3, green bananas ×4, baby/burro bananas ×6","Pumpkin/butternut ×2, bell peppers ×10, cherry tomatoes 1kg","Red onion ×3, spring onions 3 bunches","Watercress, rocket, romaine, cucumber ×3","Avocado ×7, olives 1 jar","Oyster / king oyster / portobello 600g","Seeded grapes, berries, plums, mango ×2","Spring water ~20L","Coconut water 3L"],
+  "Week 2 (order day 5)":["Key limes ×30","Coconut water 7L","Avocado ×7, cucumber ×5","Cherry tomatoes 1kg, bell peppers ×6","Kale or dandelion 4 bunches, rocket ×2","Watermelon, papaya ×2, mango ×3","Berries 4 punnets, seeded grapes, apples ×4","Chayote ×2, dill","Dried sea moss (Purple 80g or Gold 70g, £25)","Spring water ~20L"],
+  "Fast week (order day 12)":["Key limes ×40","Coconut water 7–10L","Soursop ×2–3","Papaya ×3","Watercress 4 bunches","Cucumber ×4","Pears ×10","Blueberries + blackberries 6 punnets","Dandelion greens 2 bunches","Spring water ~20L"],
+  "Exit (days 22–25)":["Seeded fruit: grapes, berries, melon, mango, pears, apples","Soup veg: squash, chayote, peppers, spring onion","Leafy greens"]
+};
+function vShop(){
+  var h='<h2>Shopping</h2><p class="muted">One person. Fresh produce from a Caribbean or Latin grocer (Brixton Market); grains from a wholefood site.</p>';
+  Object.keys(SHOP).forEach(function(sec,si){
+    var items=SHOP[sec], done=items.filter(function(x,i){return state.shop[si+":"+i];}).length;
+    h+='<h3>'+esc(sec)+' <span class="pill sea">'+done+'/'+items.length+'</span></h3><div class="card"><ul class="check">';
+    items.forEach(function(x,i){ var k=si+":"+i, on=!!state.shop[k]; h+='<li class="'+(on?"done":"")+'"><input type="checkbox" id="s-'+k+'" data-shop="'+k+'"'+(on?" checked":"")+'><label class="what" for="s-'+k+'" style="font-weight:400">'+esc(x)+'</label></li>'; });
+    h+='</ul></div>';
+  });
+  return h;
+}
+
+function vLog(){
+  var d = dayNum(), h='<h2>Daily log</h2>';
+  var cur = (d===null)?0:Math.max(0,Math.min(d,25));
+  var L = state.log[cur]||{};
+  h+='<div class="card"><div class="row"><label for="logDay">Day</label><select id="logDay">';
+  for(var i=0;i<=25;i++){ h+='<option value="'+i+'"'+(i===cur?" selected":"")+'>'+(i===0?"Baseline":"Day "+i)+'</option>'; }
+  h+='</select></div><div class="grid g3" style="margin-top:12px"><div><label for="lw">Weight (kg)</label><br><input type="number" step="0.1" id="lw" value="'+esc(L.w||"")+'" style="width:100%"></div><div><label for="le">Energy 1–10</label><br><input type="number" min="1" max="10" id="le" value="'+esc(L.e||"")+'" style="width:100%"></div><div><label for="lb">Blood pressure</label><br><input type="text" id="lb" placeholder="e.g. 128/82" value="'+esc(L.b||"")+'" style="width:100%"></div></div><div style="margin-top:12px"><label for="ln">Notes (bowels, sleep, mood, symptoms)</label><textarea id="ln">'+esc(L.n||"")+'</textarea></div><div class="row" style="margin-top:10px"><button class="primary" id="logSave">Save entry</button></div></div>';
+  var keys=Object.keys(state.log).map(Number).sort(function(a,b){return a-b;});
+  if(keys.length){
+    h+='<div class="card tw" style="margin-top:12px"><table><thead><tr><th>Day</th><th>kg</th><th>Energy</th><th>BP</th><th>Notes</th></tr></thead><tbody>';
+    keys.forEach(function(k){ var e=state.log[k]; h+='<tr><td>'+(k===0?"Baseline":k)+'</td><td style="font-variant-numeric:tabular-nums">'+esc(e.w)+'</td><td>'+esc(e.e)+'</td><td>'+esc(e.b)+'</td><td>'+esc(e.n)+'</td></tr>'; });
+    h+='</tbody></table></div>';
+  }
+  var T=[["base","Baseline (before day 1): full panel incl. liver, kidney, electrolytes, thyroid, B12, vitamin D, iron"],["d21","Day 21: liver, kidney, electrolytes, phosphate"],["m3","~3 months: full panel again"]];
+  h+='<h2>Blood tests</h2><div class="card"><ul class="check">';
+  T=T.concat(state.custom.map(function(c,i){return ['c'+i,c];}));
+  T.forEach(function(t){ var on=!!state.tests[t[0]]; h+='<li class="'+(on?"done":"")+'"><input type="checkbox" id="t-'+t[0]+'" data-test="'+t[0]+'"'+(on?" checked":"")+'><label class="what" for="t-'+t[0]+'" style="font-weight:400">'+esc(t[1])+'</label></li>'; });
+  h+='</ul><p class="small muted">Take the baseline before any sea moss — it shifts thyroid results.</p><div class="row" style="margin-top:10px"><input type="text" id="customTest" placeholder="Add your own test or marker" style="flex:1;min-width:180px"><button id="addTest">Add</button></div></div>';
+  if(state.start){ h+='<div class="row" style="margin-top:16px"><button id="resetStart">Change day 1</button></div>'; }
+  return h;
+}
+
+function vKnow(){
+  return '<h2>Evidence</h2><div class="ev">'+
+  '<div class="card for"><h3>For</h3><p class="small">Whole plant foods, high fibre, no alcohol or processed food, a fixed eating window, daily walking and rest are well supported. Short fasts lower insulin and IGF-1.</p></div>'+
+  '<div class="card against"><h3>Against</h3><p class="small">No evidence that food makes blood "alkaline", that disease is "mucus", or that these herbs shrink tumours. Organ-specific claims come from labels and books, not trials.</p></div>'+
+  '<div class="card unk"><h3>Unknown</h3><p class="small">What a 7-day juice-then-water fast does to any specific condition — hence bloods before and after.</p></div></div>'+
+  '<h2>Ingredient flags</h2><div class="card tw"><table><thead><tr><th>Ingredient</th><th>In</th><th>Risk</th><th>Handled by</th></tr></thead><tbody>'+
+  '<tr><td>Chaparral</td><td>Iron Fluorine</td><td>Rare severe liver injury</td><td>Liver bloods; stop if dark urine, yellow eyes, right-side pain</td></tr>'+
+  '<tr><td>Cascara + rhubarb</td><td>Colon tea</td><td>Laxative; potassium loss beyond 1–2 weeks</td><td>7 days only; 2L+ water; sea salt</td></tr>'+
+  '<tr><td>Cohosh (type?)</td><td>Colon tea</td><td>Black: rare liver cases. Blue: BP, chest pain</td><td>Ask the shop which</td></tr>'+
+  '<tr><td>Sea moss, bladderwrack</td><td>Endocrine, gel</td><td>Variable iodine; some heavy metals</td><td>Thyroid on baseline; certificate of analysis</td></tr>'+
+  '<tr><td>Brazil nuts</td><td>Salad cream, pesto</td><td>Selenium</td><td>2 a day max</td></tr>'+
+  '<tr><td>Fasting</td><td>Days 15–21</td><td>Refeeding syndrome after 5+ days</td><td>Juice first; slow 4-day exit; phosphate test</td></tr>'+
+  '</tbody></table></div>'+
+  '<h2>Sources you have</h2><div class="card small"><ul><li>Eat Alkaline Foods Book (<em>Hidden Facts on Health &amp; Nutrition 2</em>) — food list pp.171–174, rules p.127, supplement prep p.188, fasting plans pp.195–196</li><li>Cook with Mutulu cookbook</li><li>Alkaline Pocket Nutrition Guide</li><li>Dr Sebi 2007 guide, cookbook, product list</li><li>Herb labels, shop transcript</li></ul></div>'+
+  '<h2>Online</h2><div class="card small"><ul>'+
+  '<li><a href="https://cdn.shopify.com/s/files/1/0255/6067/8451/files/Nutrional-Guide.pdf">Dr Sebi\'s Cell Food — Nutritional Guide (2020)</a></li>'+
+  '<li><a href="https://www.ncbi.nlm.nih.gov/books/NBK548355/">NIH LiverTox — Chaparral</a></li>'+
+  '<li><a href="https://www.drugs.com/npp/cascara.html">Cascara sagrada</a></li>'+
+  '<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2440847/">Refeeding syndrome (BMJ / NICE)</a></li>'+
+  '<li><a href="https://www.nccih.nih.gov/health/yohimbe">NCCIH — Yohimbe</a></li>'+
+'</ul></div>';
+}
+
+// ---------- Router ----------
+var VIEWS = {today:vToday, plan:vPlan, herbs:vHerbs, food:vFood, shop:vShop, log:vLog, know:vKnow};
+function current(){ var h=(location.hash||"").replace("#",""); return VIEWS[h]?h:"today"; }
+function render(){
+  var c=current();
+  document.querySelectorAll("#tabs a").forEach(function(a){ if(a.getAttribute("href")==="#"+c) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  document.getElementById("app").innerHTML = VIEWS[c]();
+  bind();
+}
+function bind(){
+  var q=function(id){return document.getElementById(id);};
+  if(q("startBtn")) q("startBtn").onclick=function(){ var v=q("startIn").value; if(!v){ q("startIn").focus(); return; } state.start=v; viewDay=null; save(); render(); };
+  if(q("prevDay")) q("prevDay").onclick=function(){ viewDay=Math.max(0,viewDay-1); render(); };
+  if(q("nextDay")) q("nextDay").onclick=function(){ viewDay=Math.min(26,viewDay+1); render(); };
+  if(q("todayBtn")) q("todayBtn").onclick=function(){ viewDay=null; render(); };
+  document.querySelectorAll("[data-check]").forEach(function(el){ el.onchange=function(){ var k=el.getAttribute("data-check"); if(el.checked) state.checks[k]=1; else delete state.checks[k]; el.closest("li").className=el.checked?"done":""; save(); }; });
+  document.querySelectorAll("[data-shop]").forEach(function(el){ el.onchange=function(){ var k=el.getAttribute("data-shop"); if(el.checked) state.shop[k]=1; else delete state.shop[k]; el.closest("li").className=el.checked?"done":""; save(); }; });
+  document.querySelectorAll("[data-test]").forEach(function(el){ el.onchange=function(){ var k=el.getAttribute("data-test"); if(el.checked) state.tests[k]=1; else delete state.tests[k]; el.closest("li").className=el.checked?"done":""; save(); }; });
+  if(q("logDay")) q("logDay").onchange=function(){ var L=state.log[q("logDay").value]||{}; q("lw").value=L.w||""; q("le").value=L.e||""; q("lb").value=L.b||""; q("ln").value=L.n||""; };
+  if(q("logSave")) q("logSave").onclick=function(){ var k=q("logDay").value; state.log[k]={w:q("lw").value,e:q("le").value,b:q("lb").value,n:q("ln").value}; save(); render(); };
+  if(q("addTest")) q("addTest").onclick=function(){ var v=q("customTest").value.trim(); if(!v) return; state.custom.push(v); save(); render(); };
+  if(q("icsBtn")) q("icsBtn").onclick=makeICS;
+  if(q("resetStart")) q("resetStart").onclick=function(){ state.start=""; viewDay=null; save(); location.hash="#today"; render(); };
+}
+window.addEventListener("hashchange", render);
+render();
+
+setStatus(state.start?"Saved on this phone":"");
+if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
+})();
+</script>
+</body>
+</html>
